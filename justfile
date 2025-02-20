@@ -17,5 +17,5 @@ publish:
     wrangler pages publish ./public
 
 deploy:
-    hexo generate
+    zola build
     wrangler pages publish ./public
