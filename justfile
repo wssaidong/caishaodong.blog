@@ -2,7 +2,7 @@
 export PATH := join(justfile_directory(), "node_modules", "bin") + ":" + env_var('PATH')
 
 sever:
-    hexo server
+    zola serve
 
 github:
     git push
@@ -10,8 +10,8 @@ github:
 new:
     hexo new [NAME]
 
-generate:
-    hexo generate
+build:
+    zola build
 
 publish:
     wrangler pages publish ./public
