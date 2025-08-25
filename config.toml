@@ -1,6 +1,10 @@
 # The URL the site will be built for
 base_url = "https://caishaodong.pages.dev"
 
+# 网站基本信息
+title = "caishaodong"
+description = "分享技术文章和学习心得的个人博客"
+
 theme = "linkita"
 
 # Whether to automatically compile all Sass files in the sass directory
@@ -9,10 +13,45 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
+# 生成 RSS 订阅
+generate_feeds = true
+
+# 分类法配置
+taxonomies = [
+    {name = "tags", feed = true},
+    {name = "categories", feed = true},
+]
+
 [markdown]
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = true
+highlight_theme = "base16-ocean-dark"
+
+# 启用智能标点
+smart_punctuation = true
+
+# 外部链接在新窗口打开
+external_links_target_blank = true
+external_links_no_follow = true
+external_links_no_referrer = true
 
 [extra]
-# Put all your custom variables here
+# 网站作者信息
+author = "wssaidong"
+
+# 社交链接
+social_links = [
+    { name = "GitHub", url = "https://github.com/wssaidong", icon = "github" },
+    { name = "Email", url = "mailto:caisd1@midea.com", icon = "email" },
+]
+
+# 网站统计
+analytics = false
+
+# 评论系统（可选）
+comments = false
+
+# 主题色彩
+primary_color = "#3b82f6"
+accent_color = "#f59e0b"
