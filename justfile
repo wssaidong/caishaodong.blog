@@ -18,4 +18,4 @@ publish:
 
 deploy:
     zola build
-    wrangler pages publish ./public
+    wrangler pages publish ./public --project-name=caishaodong

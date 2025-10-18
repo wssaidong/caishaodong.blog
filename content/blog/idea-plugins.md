@@ -1,8 +1,12 @@
----
-title: IDEA 推荐插件
-date: 2025-02-09 20:54:46
-tags:
----
++++
+title = "IDEA 推荐插件"
+date = 2025-02-09T12:00:00Z
+description = "IntelliJ IDEA 开发必备插件推荐"
+
+[taxonomies]
+tags = ["IDEA", "插件", "开发工具"]
+categories = ["工具"]
++++
 
 ## IDEA 推荐插件
 

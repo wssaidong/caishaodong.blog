@@ -1,8 +1,12 @@
----
-title: rust
-date: 2025-02-07 11:28:42
-tags:
----
++++
+title = "Rust 学习资源"
+date = 2025-02-07T11:28:42Z
+description = "Rust 编程语言学习资源和工具链接"
+
+[taxonomies]
+tags = ["Rust", "编程语言", "学习资源"]
+categories = ["编程"]
++++
 
 https://cheats.rs
 

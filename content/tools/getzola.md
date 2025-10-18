@@ -1,9 +1,12 @@
----
-title: getzola
-date: 2025-02-12 13:49:51
-tags:
-  - tools
----
++++
+title = "Zola 静态网站生成器"
+date = 2025-02-12T13:49:51Z
+description = "Zola 是一个快速的静态网站生成器，使用 Rust 编写"
+
+[taxonomies]
+tags = ["tools", "静态网站", "Rust"]
+categories = ["工具"]
++++
 
 https://www.getzola.org/
 

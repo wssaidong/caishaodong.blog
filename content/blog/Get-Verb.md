@@ -1,12 +1,12 @@
----
-title: Get-Verb
-date: 2025-02-09 01:09:20
-tags:
-  - blog
-categories: 
-  - blog
++++
+title = "Get-Verb"
+date = 2025-02-09T12:00:00Z
+description = "PowerShell Get-Verb cmdlet 使用指南"
 
----
+[taxonomies]
+tags = ["blog", "PowerShell"]
+categories = ["blog"]
++++
 
 "Get-Verb" 是 PowerShell 中的一个 cmdlet，用于列出常用的动词，通常用于命名 PowerShell 命令（cmdlets）和函数以遵循 PowerShell 命名约定。以下是一些常见的 "Get-Verb" 返回的动词列表，这些动词通常用于命名 PowerShell 命令：
 
