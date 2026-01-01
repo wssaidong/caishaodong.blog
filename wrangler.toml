@@ -1,0 +1,13 @@
+# Cloudflare Pages 部署配置
+
+# 项目名称
+name = "caishaodong"
+compatibility_date = "2024-01-01"
+
+# Pages 配置
+[pages]
+# 构建命令
+build_command = "npm run build"
+
+# 输出目录
+output_directory = "dist"

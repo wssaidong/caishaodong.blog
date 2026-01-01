@@ -1,0 +1,34 @@
+{
+  "name": "caishaodong.blog",
+  "version": "1.0.0",
+  "description": "分享技术文章和学习心得的个人博客",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "deploy": "npm run build && wrangler pages deploy ./dist --project-name=caishaodong"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wssaidong/caishaodong.blog.git"
+  },
+  "keywords": [
+    "blog",
+    "astro",
+    "starlight"
+  ],
+  "author": "蔡少东",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wssaidong/caishaodong.blog/issues"
+  },
+  "homepage": "https://github.com/wssaidong/caishaodong.blog#readme",
+  "dependencies": {
+    "@astrojs/starlight": "^0.37.1",
+    "astro": "^5.16.6",
+    "astro-mermaid": "^1.2.0",
+    "mermaid": "^11.12.2"
+  }
+}

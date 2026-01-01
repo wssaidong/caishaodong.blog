@@ -1,0 +1,116 @@
+/* 首页优化样式 */
+
+/* 最新文章区域 */
+.layout-list {
+  .post-list {
+    .post {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--text-decoration-color);
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background-color: var(--primary-descoration-color);
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        border-radius: 4px;
+        border-bottom-color: transparent;
+      }
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      .line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(to right, var(--text-decoration-color), transparent);
+        margin: 0 1rem;
+      }
+      
+      .date {
+        color: var(--text-pale-color);
+        font-size: 0.9rem;
+        font-weight: 400;
+      }
+    }
+  }
+  
+  .read-more {
+    a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--primary-color);
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background-color: var(--primary-color);
+        color: var(--bg-color);
+        transform: translateY(-1px);
+      }
+    }
+  }
+}
+
+/* 简介区域 */
+#brief {
+  margin: 1.5rem 0;
+  
+  p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+  
+  ul {
+    list-style: none;
+    padding-left: 0;
+    
+    li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.5rem;
+      position: relative;
+      
+      &::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: var(--primary-color);
+        font-weight: bold;
+      }
+      
+      strong {
+        color: var(--primary-color);
+      }
+    }
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .layout-list {
+    .post-list {
+      .post {
+        .line {
+          display: none;
+        }
+        
+        .date {
+          display: block;
+          margin-top: 0.3rem;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+  
+  #links {
+    #left {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      
+      a {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

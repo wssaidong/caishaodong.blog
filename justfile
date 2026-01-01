@@ -1,21 +1,22 @@
 #!/usr/bin/env just --justfile
 export PATH := join(justfile_directory(), "node_modules", "bin") + ":" + env_var('PATH')
 
-sever:
-    zola serve
+# 启动开发服务器
+dev:
+    npm run dev
 
+# 构建项目
+build:
+    npm run build
+
+# 预览构建结果
+preview:
+    npm run preview
+
+# 部署到 Cloudflare Pages
+deploy:
+    npm run deploy
+
+# GitHub 推送
 github:
     git push
-
-new:
-    hexo new [NAME]
-
-build:
-    zola build
-
-publish:
-    wrangler pages publish ./public
-
-deploy:
-    zola build
-    wrangler pages publish ./public --project-name=caishaodong

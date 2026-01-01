@@ -1,0 +1,120 @@
+<!-- 自定义头部优化 -->
+
+<!-- 网站图标 -->
+<link rel="icon" type="image/x-icon" href="{{ get_url(path='favicon.ico') }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ get_url(path='apple-touch-icon.png') }}">
+
+<!-- 字体优化 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- 自定义样式 -->
+<style>
+  /* 字体优化 */
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+  
+  code, pre {
+    font-family: 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', Menlo, monospace;
+  }
+  
+  /* 页面加载动画 */
+  .page-loading {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease-out;
+  }
+  
+  .page-loaded {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* 平滑滚动 */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* 选择文本样式 */
+  ::selection {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: inherit;
+  }
+  
+  /* 焦点样式优化 */
+  :focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+</style>
+
+<!-- 性能优化 -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+
+<!-- PWA 支持 -->
+<meta name="theme-color" content="#3b82f6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="{{ config.title }}">
+
+<!-- 社交媒体优化 -->
+{% if page %}
+  <meta property="og:title" content="{{ page.title }} - {{ config.title }}">
+  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% elif page.summary %}{{ page.summary | striptags | truncate(length=160) }}{% else %}{{ config.description }}{% endif %}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{{ page.permalink }}">
+  {% if page.date %}
+    <meta property="article:published_time" content="{{ page.date | date(format='%Y-%m-%d') }}">
+  {% endif %}
+  {% if page.updated %}
+    <meta property="article:modified_time" content="{{ page.updated | date(format='%Y-%m-%d') }}">
+  {% endif %}
+  {% if page.taxonomies.tags %}
+    {% for tag in page.taxonomies.tags %}
+      <meta property="article:tag" content="{{ tag }}">
+    {% endfor %}
+  {% endif %}
+{% else %}
+  <meta property="og:title" content="{{ config.title }}">
+  <meta property="og:description" content="{{ config.description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ config.base_url }}">
+{% endif %}
+
+<meta property="og:site_name" content="{{ config.title }}">
+<meta property="og:locale" content="zh_CN">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{% if page %}{{ page.title }} - {{ config.title }}{% else %}{{ config.title }}{% endif %}">
+<meta name="twitter:description" content="{% if page and page.description %}{{ page.description }}{% elif page and page.summary %}{{ page.summary | striptags | truncate(length=160) }}{% else %}{{ config.description }}{% endif %}">
+
+<!-- 结构化数据 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{% if page %}BlogPosting{% else %}Blog{% endif %}",
+  "name": "{{ config.title }}",
+  "description": "{{ config.description }}",
+  "url": "{{ config.base_url }}",
+  {% if page %}
+  "headline": "{{ page.title }}",
+  "datePublished": "{% if page.date %}{{ page.date | date(format='%Y-%m-%d') }}{% endif %}",
+  "dateModified": "{% if page.updated %}{{ page.updated | date(format='%Y-%m-%d') }}{% else %}{{ page.date | date(format='%Y-%m-%d') }}{% endif %}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ config.extra.author | default(value='蔡少东') }}"
+  },
+  {% endif %}
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ config.title }}",
+    "url": "{{ config.base_url }}"
+  }
+}
+</script>

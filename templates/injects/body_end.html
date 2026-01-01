@@ -1,0 +1,222 @@
+<!-- 页面增强脚本 -->
+<script>
+  // 页面加载完成后的动画
+  document.addEventListener('DOMContentLoaded', function() {
+    // 移除加载状态
+    document.body.classList.remove('page-loading');
+    document.body.classList.add('page-loaded');
+    
+    // 为文章卡片添加渐入动画
+    const cards = document.querySelectorAll('.block-bg');
+    cards.forEach((card, index) => {
+      card.style.animationDelay = `${index * 0.1}s`;
+    });
+  });
+
+  // 平滑滚动到顶部
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  // 创建回到顶部按钮
+  function createBackToTopButton() {
+    const button = document.createElement('button');
+    button.innerHTML = '↑';
+    button.className = 'fixed bottom-8 right-8 w-12 h-12 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-all duration-200 opacity-0 pointer-events-none z-50';
+    button.style.cssText += `
+      font-size: 1.5rem;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transform: translateY(20px);
+    `;
+    button.onclick = scrollToTop;
+    document.body.appendChild(button);
+
+    // 滚动时显示/隐藏按钮
+    let isVisible = false;
+    window.addEventListener('scroll', function() {
+      const shouldShow = window.scrollY > 300;
+      
+      if (shouldShow && !isVisible) {
+        button.style.opacity = '1';
+        button.style.pointerEvents = 'auto';
+        button.style.transform = 'translateY(0)';
+        isVisible = true;
+      } else if (!shouldShow && isVisible) {
+        button.style.opacity = '0';
+        button.style.pointerEvents = 'none';
+        button.style.transform = 'translateY(20px)';
+        isVisible = false;
+      }
+    });
+  }
+
+  // 图片懒加载优化
+  function optimizeImages() {
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+      if (!img.loading) {
+        img.loading = 'lazy';
+      }
+      
+      // 图片加载错误处理
+      img.onerror = function() {
+        this.style.display = 'none';
+      };
+    });
+  }
+
+  // 代码块复制功能
+  function addCodeCopyButtons() {
+    const codeBlocks = document.querySelectorAll('pre code');
+    codeBlocks.forEach(codeBlock => {
+      const pre = codeBlock.parentElement;
+      if (pre.querySelector('.copy-button')) return; // 避免重复添加
+      
+      const button = document.createElement('button');
+      button.className = 'copy-button absolute top-2 right-2 px-3 py-1 text-xs bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors';
+      button.textContent = '复制';
+      button.style.cssText += 'z-index: 10;';
+      
+      pre.style.position = 'relative';
+      pre.appendChild(button);
+      
+      button.addEventListener('click', async function() {
+        try {
+          await navigator.clipboard.writeText(codeBlock.textContent);
+          button.textContent = '已复制!';
+          button.style.backgroundColor = '#10b981';
+          
+          setTimeout(() => {
+            button.textContent = '复制';
+            button.style.backgroundColor = '#4b5563';
+          }, 2000);
+        } catch (err) {
+          console.error('复制失败:', err);
+          button.textContent = '复制失败';
+          setTimeout(() => {
+            button.textContent = '复制';
+          }, 2000);
+        }
+      });
+    });
+  }
+
+  // 外部链接处理
+  function handleExternalLinks() {
+    const links = document.querySelectorAll('a[href^="http"]');
+    links.forEach(link => {
+      if (!link.hostname.includes(window.location.hostname)) {
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        
+        // 添加外部链接图标
+        if (!link.querySelector('.external-icon')) {
+          const icon = document.createElement('span');
+          icon.className = 'external-icon ml-1 text-xs opacity-60';
+          icon.innerHTML = '↗';
+          link.appendChild(icon);
+        }
+      }
+    });
+  }
+
+  // 搜索功能增强
+  function enhanceSearch() {
+    const searchInput = document.querySelector('input[type="search"]');
+    if (searchInput) {
+      // 添加搜索快捷键 (Ctrl/Cmd + K)
+      document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+          e.preventDefault();
+          searchInput.focus();
+        }
+      });
+      
+      // 搜索框占位符提示
+      searchInput.placeholder = '搜索文章... (Ctrl+K)';
+    }
+  }
+
+  // 阅读进度条
+  function createReadingProgress() {
+    if (!document.querySelector('article')) return; // 只在文章页面显示
+    
+    const progressBar = document.createElement('div');
+    progressBar.className = 'reading-progress fixed top-0 left-0 h-1 bg-blue-500 z-50 transition-all duration-200';
+    progressBar.style.width = '0%';
+    document.body.appendChild(progressBar);
+    
+    window.addEventListener('scroll', function() {
+      const article = document.querySelector('article') || document.querySelector('main');
+      if (!article) return;
+      
+      const articleTop = article.offsetTop;
+      const articleHeight = article.offsetHeight;
+      const windowHeight = window.innerHeight;
+      const scrollTop = window.scrollY;
+      
+      const progress = Math.min(
+        Math.max((scrollTop - articleTop + windowHeight) / articleHeight, 0),
+        1
+      );
+      
+      progressBar.style.width = `${progress * 100}%`;
+    });
+  }
+
+  // 初始化所有功能
+  document.addEventListener('DOMContentLoaded', function() {
+    createBackToTopButton();
+    optimizeImages();
+    addCodeCopyButtons();
+    handleExternalLinks();
+    enhanceSearch();
+    createReadingProgress();
+  });
+
+  // 性能监控
+  window.addEventListener('load', function() {
+    // 页面加载性能统计
+    if ('performance' in window) {
+      const perfData = performance.getEntriesByType('navigation')[0];
+      if (perfData && perfData.loadEventEnd > 0) {
+        console.log(`页面加载时间: ${Math.round(perfData.loadEventEnd)}ms`);
+      }
+    }
+  });
+</script>
+
+<!-- 样式增强 -->
+<style>
+  /* 回到顶部按钮样式 */
+  .back-to-top {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* 代码复制按钮样式 */
+  .copy-button {
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* 阅读进度条样式 */
+  .reading-progress {
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  }
+  
+  /* 外部链接图标样式 */
+  .external-icon {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+  
+  a:hover .external-icon {
+    transform: translate(1px, -1px);
+  }
+</style>
