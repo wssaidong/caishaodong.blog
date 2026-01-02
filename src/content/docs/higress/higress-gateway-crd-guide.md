@@ -3,7 +3,6 @@ title: Higress Gateway API 使用指南
 description: Higress Gateway API 使用指南相关技术文档
 ---
 
-# Higress Gateway API 使用指南
 
 本文档基于 [Higress 官方博客](https://github.com/higress-group/higress-group.github.io/blob/main/src/content/blog/) 和 [Kubernetes Gateway API 官方文档](https://gateway-api.sigs.k8s.io/) 整理，详细介绍 Higress 对 Gateway API 的支持能力和使用方法。
 

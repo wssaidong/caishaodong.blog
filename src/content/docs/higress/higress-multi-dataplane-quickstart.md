@@ -3,7 +3,6 @@ title: Higress 多数据面管理快速开始
 description: Higress 多数据面管理快速开始相关技术文档
 ---
 
-# Higress 多数据面管理快速开始
 
 本文档提供多集群 Higress 管理的快速入门指南。
 

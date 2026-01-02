@@ -3,7 +3,6 @@ title: Higress 操作指南
 description: Higress 操作指南相关技术文档
 ---
 
-# Higress 操作指南
 
 本文档说明 Higress 的部署、配置和运维操作方法。
 

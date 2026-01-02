@@ -3,7 +3,6 @@ title: Higress 路由与服务在 Kubernetes 中的存储位置
 description: Higress 路由与服务在 Kubernetes 中的存储位置相关技术文档
 ---
 
-# Higress 路由与服务在 Kubernetes 中的存储位置
 
 本文档详细说明 Higress 使用 Helm 方式部署时，创建的路由、服务和配置如何存储在 Kubernetes 集群中。
 

@@ -7,7 +7,7 @@ export default defineConfig({
   integrations: [
     mermaid(),
     starlight({
-      title: '蔡少东',
+      title: 'wilson-x',
       description: '分享技术文章和学习心得的个人博客',
       sidebar: [
         {

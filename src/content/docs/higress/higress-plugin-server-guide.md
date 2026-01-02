@@ -3,7 +3,6 @@ title: Higress Plugin Server 使用指南
 description: Higress Plugin Server 使用指南相关技术文档
 ---
 
-# Higress Plugin Server 使用指南
 
 本文档详细介绍 Higress Plugin Server 的概念、架构、部署和使用方法，帮助用户在私有化环境中简化 Wasm 插件的分发与管理。
 

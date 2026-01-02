@@ -3,7 +3,6 @@ title: Higress Pilot 工作原理详解
 description: Higress Pilot 工作原理详解相关技术文档
 ---
 
-# Higress Pilot 工作原理详解
 
 本文档详细说明 Higress Pilot 组件的架构设计和工作原理，帮助开发者深入理解 Higress 控制面的核心机制。
 

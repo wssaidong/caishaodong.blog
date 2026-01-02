@@ -1,5 +1,5 @@
 ---
-title: 欢迎来到蔡少东的技术博客
+title: 欢迎来到 wilson-x 的技术博客
 description: 分享技术文章和学习心得的个人博客
 ---
 

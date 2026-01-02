@@ -3,7 +3,6 @@ title: Higress K8s 集群多实例部署指南
 description: Higress K8s 集群多实例部署指南相关技术文档
 ---
 
-# Higress K8s 集群多实例部署指南
 
 本文档基于 [Higress 官方博客](https://github.com/higress-group/higress-group.github.io/blob/main/src/content/blog/) 和 [Higress 官方文档](https://higress.io/docs/latest/) 整理，介绍如何在 Kubernetes 集群中部署多个 Higress 网关实例。
 

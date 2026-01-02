@@ -3,7 +3,6 @@ title: Higress Values 配置参数详解
 description: Higress Values 配置参数详解相关技术文档
 ---
 
-# Higress Values 配置参数详解
 
 本文档详细说明 Higress Helm Chart 的 `values.yaml` 文件中各个配置参数的作用。
 

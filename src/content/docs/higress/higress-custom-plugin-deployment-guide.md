@@ -3,7 +3,6 @@ title: Higress 自定义插件部署指南
 description: Higress 自定义插件部署指南相关技术文档
 ---
 
-# Higress 自定义插件部署指南
 
 本文档详细说明如何开发、构建和部署自己开发的 Higress Wasm 插件。
 

@@ -3,7 +3,6 @@ title: Higress 网关
 description: Higress 云原生 API 网关技术文档
 ---
 
-Higress 是一个云原生 API 网关，基于 Istio 和 Envoy 构建，提供统一的流量管理、服务发现和安全防护能力。
 
 ## 核心特性
 

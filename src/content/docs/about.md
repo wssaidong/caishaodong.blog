@@ -1,9 +1,9 @@
 ---
 title: 关于我
-description: 了解蔡少东
+description: 了解 wilson-x
 ---
 
-## 你好，我是蔡少东
+## 你好，我是 wilson-x
 
 一名专注于技术分享与学习的开发者，热爱编程，喜欢探索新技术。
 

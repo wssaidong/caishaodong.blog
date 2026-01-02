@@ -3,7 +3,6 @@ title: Higress Admin SDK 使用指南
 description: Higress Admin SDK 使用指南相关技术文档
 ---
 
-# Higress Admin SDK 使用指南
 
 ## 1. 概述
 

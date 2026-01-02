@@ -3,7 +3,6 @@ title: Higress REST API 使用指南
 description: Higress REST API 使用指南相关技术文档
 ---
 
-# Higress REST API 使用指南
 
 本文档说明 Higress 提供的各种 REST API 及其使用方式。
 
