@@ -9,6 +9,17 @@ export default defineConfig({
     starlight({
       title: 'wilson-x',
       description: '分享技术文章和学习心得的个人博客',
+      head: [
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'alternate',
+            type: 'application/rss+xml',
+            title: 'wilson-x 技术博客',
+            href: '/rss.xml',
+          },
+        },
+      ],
       sidebar: [
         {
           label: '首页',
@@ -55,6 +66,7 @@ export default defineConfig({
             { label: 'Dotenvx', link: '/dev-tools/dotenvx' },
             { label: '使用指南', link: '/dev-tools/dotenvx/guide' },
             { label: '工具', link: '/dev-tools/tools' },
+            { label: 'Vibe Kanban', link: '/dev-tools/vibe-kanban' },
           ],
         },
         {
