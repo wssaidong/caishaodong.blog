@@ -58,3 +58,15 @@ Thumbs.db
 
 # Claude
 .claude/
+.claude-mem/
+
+# Coverage
+coverage/
+*.lcov
+
+# Misc
+*.pid
+*.seed
+*.pid.lock
+.lock-wscript
+.pnp.*
