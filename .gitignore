@@ -55,3 +55,6 @@ Thumbs.db
 
 # Cloudflare
 .wrangler/
+
+# Claude
+.claude/
