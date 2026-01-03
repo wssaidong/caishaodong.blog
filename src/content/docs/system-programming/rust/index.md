@@ -1,6 +1,8 @@
 ---
 title: Rust
 description: Rust 编程语言学习笔记和实践
+pubDate: 2026-01-02
+
 ---
 
 Rust 编程语言学习笔记和实践。

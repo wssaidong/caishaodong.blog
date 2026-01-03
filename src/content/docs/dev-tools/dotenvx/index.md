@@ -1,6 +1,8 @@
 ---
 title: Dotenvx 文档
 description: Dotenvx 环境变量管理工具完整文档和最佳实践
+pubDate: 2026-01-02
+
 ---
 
 Dotenvx 是由 dotenv 原作者开发的下一代环境变量管理工具，提供了加密、多环境支持等高级功能。

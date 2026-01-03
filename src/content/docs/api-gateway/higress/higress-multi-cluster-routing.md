@@ -1,6 +1,8 @@
 ---
 title: Higress 跨集群路由和就近集群访问方案
 description: Higress 跨集群路由和就近集群访问方案相关技术文档
+pubDate: 2026-01-02
+
 ---
 
 

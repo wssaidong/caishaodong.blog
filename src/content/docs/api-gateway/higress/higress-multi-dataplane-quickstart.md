@@ -1,6 +1,8 @@
 ---
 title: Higress 多数据面管理快速开始
 description: Higress 多数据面管理快速开始相关技术文档
+pubDate: 2026-01-02
+
 ---
 
 

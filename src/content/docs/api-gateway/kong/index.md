@@ -1,6 +1,8 @@
 ---
 title: Kong API 网关
 description: Kong API 网关配置与优化
+pubDate: 2026-01-02
+
 ---
 
 Kong 是一个云原生、快速、可扩展的分布式微服务抽象层（也称为 API 网关、API 中间件或在某些情况下称为服务网格）。

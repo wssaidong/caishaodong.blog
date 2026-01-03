@@ -1,6 +1,8 @@
 ---
 title: Dotenvx 使用指南
 description: Dotenvx 完整使用指南，从基础安装到高级功能的详细介绍
+pubDate: 2026-01-02
+
 ---
 
 ## 概述

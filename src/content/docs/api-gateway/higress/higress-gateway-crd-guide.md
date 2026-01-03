@@ -1,6 +1,8 @@
 ---
 title: Higress Gateway API 使用指南
 description: Higress Gateway API 使用指南相关技术文档
+pubDate: 2026-01-02
+
 ---
 
 

@@ -1,6 +1,8 @@
 ---
 title: Higress Nacos 服务发现与命名规则深度分析
 description: Higress Nacos 服务发现与命名规则深度分析相关技术文档
+pubDate: 2026-01-02
+
 ---
 
 

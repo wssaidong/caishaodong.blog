@@ -1,6 +1,8 @@
 ---
 title: Higress Pilot 工作原理详解
 description: Higress Pilot 工作原理详解相关技术文档
+pubDate: 2026-01-02
+
 ---
 
 

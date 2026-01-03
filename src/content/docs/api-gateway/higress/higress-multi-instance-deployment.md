@@ -1,6 +1,8 @@
 ---
 title: Higress K8s 集群多实例部署指南
 description: Higress K8s 集群多实例部署指南相关技术文档
+pubDate: 2026-01-02
+
 ---
 
 

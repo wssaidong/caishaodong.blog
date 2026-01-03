@@ -1,6 +1,8 @@
 ---
 title: Higress 路由与服务在 Kubernetes 中的存储位置
 description: Higress 路由与服务在 Kubernetes 中的存储位置相关技术文档
+pubDate: 2026-01-02
+
 ---
 
 

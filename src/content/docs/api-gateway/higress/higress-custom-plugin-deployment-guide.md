@@ -1,6 +1,8 @@
 ---
 title: Higress 自定义插件部署指南
 description: Higress 自定义插件部署指南相关技术文档
+pubDate: 2026-01-02
+
 ---
 
 

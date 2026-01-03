@@ -1,6 +1,8 @@
 ---
 title: Higress Admin SDK 使用指南
 description: Higress Admin SDK 使用指南相关技术文档
+pubDate: 2026-01-02
+
 ---
 
 

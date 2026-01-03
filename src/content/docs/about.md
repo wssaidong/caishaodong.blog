@@ -1,6 +1,7 @@
 ---
 title: 关于我
 description: 了解 wilson-x
+pubDate: 2026-01-02
 ---
 
 ## 你好，我是 wilson-x

@@ -1,12 +1,12 @@
+import { docsSchema } from '@astrojs/starlight/schema';
 import { defineCollection, z } from 'astro:content';
 
 const docs = defineCollection({
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    pubDate: z.coerce.date().optional(),
-    updatedDate: z.coerce.date().optional(),
-    author: z.string().default('wilson-x'),
+  schema: docsSchema({
+    extend: (context) => z.object({
+      // 扩展 Starlight schema，添加 pubDate 字段
+      pubDate: z.coerce.date().optional(),
+    }),
   }),
 });
 

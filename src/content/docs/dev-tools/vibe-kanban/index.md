@@ -1,6 +1,8 @@
 ---
 title: Vibe Kanban
 description: AI 编程代理编排平台，帮助开发者从 Claude Code、Gemini CLI、Codex 等 AI 编程工具中提高效率
+pubDate: 2026-01-04
+
 ---
 
 ## 概述

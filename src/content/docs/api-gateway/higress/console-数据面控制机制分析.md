@@ -1,6 +1,8 @@
 ---
 title: Higress Console 数据面控制机制分析
 description: 分析 Higress Console 如何通过 Pilot 与数据面 Gateway 进行交互和控制
+pubDate: 2026-01-02
+
 ---
 
 
