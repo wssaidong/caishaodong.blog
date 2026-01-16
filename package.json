@@ -27,7 +27,7 @@
   "homepage": "https://github.com/wssaidong/caishaodong.blog#readme",
   "dependencies": {
     "@astrojs/rss": "^4.0.14",
-    "@astrojs/starlight": "^0.37.1",
+    "@astrojs/starlight": "^0.37.3",
     "astro": "^5.16.6",
     "astro-mermaid": "^1.2.0",
     "gray-matter": "^4.0.3",
