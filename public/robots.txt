@@ -1,0 +1,29 @@
+# robots.txt - 搜索引擎爬虫配置文件
+
+# 允许所有爬虫访问
+User-agent: *
+Allow: /
+
+# 禁止爬取Drafts目录
+Disallow: /drafts/
+
+# 禁止爬取临时文件和脚本
+Disallow: /tmp_*.js
+Disallow: /tmp_*.mjs
+Disallow: /tmp_*.cjs
+
+# 禁止爬取GitHub等版本控制目录
+Disallow: /.git/
+Disallow: /.github/
+
+# 禁止爬取Node模块
+Disallow: /node_modules/
+
+# 禁止爬取构建输出
+Disallow: /dist/
+
+# 站点地图位置
+Sitemap: https://caishaodong.pages.dev/sitemap-index.xml
+
+# 爬取延迟（可选，遵守礼貌原则）
+Crawl-delay: 1
