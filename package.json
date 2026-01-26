@@ -28,7 +28,7 @@
   "dependencies": {
     "@astrojs/rss": "^4.0.14",
     "@astrojs/starlight": "^0.37.1",
-    "astro": "^5.16.6",
+    "astro": "^5.16.15",
     "astro-mermaid": "^1.2.0",
     "gray-matter": "^4.0.3",
     "mermaid": "^11.12.2"
