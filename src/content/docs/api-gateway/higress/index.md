@@ -79,6 +79,8 @@ flowchart TB
 | [插件服务器](./higress-plugin-server-guide.md) | 插件服务器配置与使用 |
 | [自定义插件部署](./higress-custom-plugin-deployment-guide.md) | 自定义插件部署指南 |
 
+> 💡 **WASM 插件专题**：查看 [Higress WASM 插件](../higress-wasm/) 了解更多 WASM 插件技术细节，包括 [AI 缓存插件深度解析](../higress-wasm/79731130-ai-cache-plugin-deep-dive.md) 等专题文章。
+
 ### 多集群与跨集群路由
 
 | 文档 | 描述 |
