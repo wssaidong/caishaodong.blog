@@ -75,6 +75,7 @@ flowchart TB
 |------|------|
 | [AI 搜索增强插件深度解析](./79731139-higress-ai-search-deep-dive.md) | 多搜索引擎集成（Google、Bing、Arxiv、ES），LLM 智能重写，RAG 实时增强 |
 | [AI 安全防护插件深度解析](./79731140-higress-ai-security-guard-deep-dive.md) | 阿里云内容安全集成，三重安全检测（合规、攻击、敏感数据） |
+| [AI 安全合规落地实践](./79731148-higress-ai-security-compliance-implementation.md) | 涉恐涉暴内容网关层防护实践，分级拦截策略，监控审计体系 |
 | [AI RAG 插件深度解析](./79731141-higress-ai-rag-deep-dive.md) | DashVector 向量检索集成，语义搜索，文档注入，链路追踪 |
 
 #### 提示词与格式化插件

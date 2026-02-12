@@ -86,6 +86,7 @@ flowchart TB
 | 文档 | 描述 |
 |------|------|
 | [多集群路由](./higress-multi-cluster-routing.md) | 跨集群路由和就近集群访问方案 |
+| [两地三中心 AI 网关部署](./79731149-higress-two-site-three-center-ai-gateway-deployment.md) | 两地三中心架构下高可用 AI 网关部署实践（同地域双活、就近路由、故障切换） |
 
 ## 官方资源
 
