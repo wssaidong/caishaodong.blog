@@ -76,6 +76,7 @@ flowchart TB
 
 | 文档 | 描述 |
 |------|------|
+| [AI Proxy 插件指南](./79731150-higress-ai-proxy-plugin-guide.md) | AI Proxy 插件使用指南，包括 OpenAI 与 Anthropic 协议转换 |
 | [插件服务器](./higress-plugin-server-guide.md) | 插件服务器配置与使用 |
 | [自定义插件部署](./higress-custom-plugin-deployment-guide.md) | 自定义插件部署指南 |
 
