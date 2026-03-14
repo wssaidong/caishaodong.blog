@@ -1,4 +1,11 @@
-# CLI-Anything：让所有软件成为AI Agent的原生工具
+---
+slug: cli-anything-ai-agent-tools
+title: CLI-Anything：让所有软件成为AI Agent的原生工具
+description: CLI-Anything 通过一条命令将任何专业软件转化为 AI Agent 原生工具，无需 UI 自动化或 API 封装，完整保留所有功能
+date: 2026-03-12
+authors: caishaodong
+tags: [AI, Agent, CLI, 开源工具, Claude Code]
+---
 
 > AI Agent 擅长推理，但在使用真实专业软件时却表现得十分糟糕。当前解决方案要么是脆弱的 UI 自动化，要么是有限的 API，要么是功能残缺的重新实现。CLI-Anything 通过一条命令，将任何专业软件转化为 Agent 原生工具，不损失任何功能。
 

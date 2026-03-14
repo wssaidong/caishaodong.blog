@@ -5,8 +5,6 @@ pubDate: 2026-03-11
 tags: [kong, api-gateway, fallback, failover, openresty, lua]
 ---
 
-# Kong 故障转移（Fallback）机制深度解析
-
 ## 目录
 
 1. [Kong Fallback 机制概述](#kong-fallback-机制概述)
