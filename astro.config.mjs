@@ -157,6 +157,10 @@ export default defineConfig({
           autogenerate: { directory: 'system-programming' },
         },
         {
+          label: 'Kubernetes',
+          autogenerate: { directory: 'kubernetes' },
+        },
+        {
           label: '关于',
           items: [
             { label: '关于我', link: '/about' },
