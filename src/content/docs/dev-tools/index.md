@@ -24,8 +24,10 @@ pubDate: 2026-01-03
 
 - [Dotenvx](dotenvx.md) - 环境变量管理工具完整文档
 
+## 搜索引擎
+
+- [Quickwit](quickwit-usage-guide.md) - 云原生搜索引擎完整实践指南
+
 ## IDE 插件开发
 
 - [IntelliJ IDEA 开发必备插件推荐](idea-plugin.md) - IDEA 插件精选推荐
-
-- [Dotenvx](dotenvx.md) - 环境变量管理工具完整文档
