@@ -15,6 +15,7 @@ pubDate: 2026-01-03
 - [GitNexus](gitnexus.md) - 零服务器代码智能引擎
 - [IntelliJ IDEA 插件开发](idea-plugin.md) - IDEA 插件开发全流程指南
 - [Vibe Kanban](vibe-kanban.md) - AI 编程代理编排平台
+- [Superpowers](superpowers-guide.md) - AI Agent 技能框架深度指南
 
 ## 测试
 
