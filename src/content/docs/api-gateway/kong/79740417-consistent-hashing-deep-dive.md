@@ -8,7 +8,7 @@ tags: ['Kong', 'API Gateway', 'Load Balancing', 'Consistent Hashing', 'Source Co
 
 ## 概述
 
-Consistent-Hashing（一致性哈希）是 Kong 网关提供的三种负载均衡算法之一，特别适用于需要会话亲和性（Session Affinity）的场景。本文将深入分析 Kong 3.0.x 版本中一致性哈希算法的源码实现，揭示它如何将请求的 hash key 精确映射到后端服务节点。
+Consistent-Hashing（一致性哈希）是 Kong 网关提供的三种负载均衡算法之一，特别适用于需要会话亲和性（Session Affinity）的场景。
 
 ## 核心源码结构
 
