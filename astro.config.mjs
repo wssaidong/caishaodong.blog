@@ -174,6 +174,43 @@ export default defineConfig({
         },
       },
       defaultLocale: 'root',
+      head: [
+        // ... existing head items ...
+        // 自定义页脚
+        {
+          tag: 'style',
+          content: `
+            .custom-footer {
+              background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+              color: #fff;
+              padding: 1.5rem 2rem;
+              text-align: center;
+              border-top: 1px solid rgba(255,255,255,0.1);
+              margin-top: 2rem;
+            }
+            .custom-footer a {
+              color: #60a5fa;
+              text-decoration: none;
+              margin: 0 1rem;
+              transition: color 0.3s;
+            }
+            .custom-footer a:hover {
+              color: #93c5fd;
+            }
+          `,
+        },
+        {
+          tag: 'script',
+          content: `
+            document.addEventListener('DOMContentLoaded', function() {
+              var footer = document.createElement('footer');
+              footer.className = 'custom-footer';
+              footer.innerHTML = '📎 其他项目：<a href="https://x-json.pages.dev" target="_blank">x-json.pages.dev</a> | <a href="https://github.com/wssaidong" target="_blank">GitHub</a>';
+              document.body.appendChild(footer);
+            });
+          `,
+        },
+      ],
     }),
   ],
 });
