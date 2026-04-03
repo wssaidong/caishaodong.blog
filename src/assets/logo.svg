@@ -1,4 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <circle cx="50" cy="50" r="45" fill="#2563eb"/>
-  <text x="50" y="65" text-anchor="middle" font-size="40" font-weight="bold" fill="white">蔡</text>
+  <defs>
+    <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00f5ff"/>
+      <stop offset="50%" style="stop-color:#b026ff"/>
+      <stop offset="100%" style="stop-color:#ff2a6d"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Outer ring -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="url(#neonGrad)" stroke-width="2" filter="url(#glow)"/>
+  <!-- Middle ring -->
+  <circle cx="50" cy="50" r="38" fill="none" stroke="#00f5ff" stroke-width="1" opacity="0.6"/>
+  <!-- Inner hexagon -->
+  <polygon points="50,15 80,32 80,68 50,85 20,68 20,32" fill="none" stroke="#b026ff" stroke-width="1.5" opacity="0.8"/>
+  <!-- Center circle -->
+  <circle cx="50" cy="50" r="20" fill="#0a0a0f" stroke="url(#neonGrad)" stroke-width="2"/>
+  <!-- Text -->
+  <text x="50" y="58" text-anchor="middle" font-family="Orbitron,sans-serif" font-weight="900" font-size="22" fill="url(#neonGrad)" filter="url(#glow)">CSD</text>
 </svg>
