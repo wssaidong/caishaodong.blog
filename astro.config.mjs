@@ -174,7 +174,6 @@ export default defineConfig({
         },
       },
       defaultLocale: 'root',
-      customCss: ['./src/styles/custom.css'],
     }),
   ],
 });
