@@ -17,7 +17,7 @@ export default defineConfig({
           tag: 'link',
           attrs: {
             rel: 'icon',
-            href: '/favicon.svg',
+            href: '/favicon.png',
             type: 'image/svg+xml',
           },
         },
@@ -129,7 +129,7 @@ export default defineConfig({
                 "@type": "Organization",
                 "name": "Wilson 技术博客",
                 "url": "https://caishaodong.pages.dev",
-                "logo": "https://caishaodong.pages.dev/favicon.svg"
+                "logo": "https://caishaodong.pages.dev/favicon.png"
               }
             ]
           }`,

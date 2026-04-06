@@ -6,8 +6,6 @@ tags: [AI, CLI, 自动化, 开发工具]
 keywords: [OpenCLI, 命令行, 浏览器自动化, AI Agent, B站, 知乎, 小红书]
 ---
 
-# OpenCLI 完全指南：把任何网站变成命令行工具
-
 > **OpenCLI**（[github.com/jackwener/opencli](https://github.com/jackwener/opencli)）是一个开源 CLI 工具，能够把任何**网站**（B站、知乎、小红书、Twitter 等 79+ 平台）、**Electron 桌面应用**（Cursor、ChatGPT、Antigravity）以及**本地 CLI 工具**统一转化为命令行接口。
 
 **核心特点：零风控 · 复用 Chrome 登录态 · AI 原生 · 零 LLM 成本**
