@@ -226,6 +226,186 @@ opencli bilibili hot --limit 5
 
 > 完整 79+ 适配器列表请查看：[github.com/jackwener/opencli/docs/adapters/index.md](https://github.com/jackwener/opencli/blob/main/docs/adapters/index.md)
 
+## 自定义适配器：创建自己的 CLI 命令
+
+OpenCLI 支持深度扩展，除了内置的 79+ 适配器，你还可以将本地项目、GitHub 仓库、甚至自己开发的工具封装成 CLI 命令。以下介绍三种主流场景。
+
+### 方式一：注册已有本地 CLI 工具
+
+`opencli register` 可以把任何本地已安装的 CLI 工具注册到 OpenCLI 统一入口，实现自动发现和透传执行。
+
+```bash
+# 注册任意本地 CLI（OpenCLI 会自动检测）
+opencli register mycli
+
+# 注册后即可通过 opencli 调用
+opencli mycli --help
+
+# 未安装时会自动尝试安装
+opencli mycli some-command
+# → 检测到未安装 → 自动 brew install mycli → 重试
+```
+
+**示例：将 GitHub CLI 封装调用：**
+
+```bash
+# gh 已注册，opencli 自动透传所有参数
+opencli gh issue list --state open --limit 10
+
+# 支持管道化
+opencli gh repo list | grep "my-project"
+```
+
+### 方式二：为 Electron 桌面应用创建适配器
+
+Electron 应用（如自研工具、内部系统）可以通过 Chrome DevTools Protocol（CDP）直接接入 OpenCLI。
+
+**Step 1：确认应用是 Electron**
+
+```bash
+# macOS 检查方式
+ls /Applications/YourApp.app/Contents/Frameworks/Electron\ Framework.framework
+```
+
+**Step 2：启动调试端口**
+
+```bash
+# 以调试模式启动应用
+/Applications/YourApp.app/Contents/MacOS/YourApp --remote-debugging-port=9222
+
+# 设置 CDP 端点环境变量
+export OPENCLI_CDP_ENDPOINT="http://127.0.0.1:9222"
+```
+
+**Step 3：创建基础适配器（clis/yourapp/status.ts）**
+
+```typescript
+// clis/yourapp/status.ts
+export default async function (args: any, ctx: any) {
+  const res = await ctx.cdpFetch("http://127.0.0.1:9222/json");
+  const data = await res.json();
+  return {
+    success: true,
+    title: data[0]?.title,
+    url: data[0]?.webSocketDebuggerUrl,
+  };
+}
+```
+
+**Step 4：创建 DOM 读取命令（clis/yourapp/dump.ts）**
+
+```typescript
+// clis/yourapp/dump.ts
+export default async function (args: any, ctx: any) {
+  // 获取 DOM 快照用于分析页面结构
+  const result = await ctx.cdpCommand("DOM.getDocument", {});
+  return { html: result.root?.outerHTML || "" };
+}
+```
+
+**Step 5：创建操作命令（clis/yourapp/send.ts）**
+
+```typescript
+// clis/yourapp/send.ts
+export default async function (args: any, ctx: any) {
+  // 在 Composer 输入框中填写内容并提交
+  await ctx.cdpCommand("Runtime.evaluate", {
+    expression: `
+      document.querySelector('.composer-input').focus();
+      document.execCommand('insertText', false, '${args.message}');
+    `,
+  });
+  // 按下回车提交
+  await ctx.cdpCommand("Input.dispatchKeyEvent", {
+    type: "keyDown",
+    key: "Enter",
+  });
+  return { success: true };
+}
+```
+
+**标准五命令集**：每个 Electron 适配器建议按以下结构实现：
+
+| 命令文件 | 作用 | 核心逻辑 |
+|----------|------|----------|
+| `status.ts` | 验证 CDP 连接 | 访问 `/json` 端点 |
+| `dump.ts` | 探测 DOM 结构 | `DOM.getDocument` + `DOM.getOuterHTML` |
+| `read.ts` | 读取目标内容 | 精确定位感兴趣的区域 |
+| `send.ts` | 写入内容并提交 | `evaluate` + `Input.dispatchKeyEvent` |
+| `new.ts` | 创建新会话/标签页 | `Tab.create` 或快捷键模拟 |
+
+### 方式三：录制浏览器操作生成适配器
+
+OpenCLI 支持记录你在浏览器中的操作，自动生成适配器代码框架。
+
+```bash
+# 启动录制模式
+opencli record
+
+# 在浏览器中进行一系列操作
+# 例如：打开网页 → 搜索 → 点击结果 → 获取内容
+
+# 录制结束后，自动生成 .ts 适配器文件到 clis/
+# 生成的文件结构：
+clis/
+  mysite/
+    search.ts    # 搜索命令
+    read.ts     # 读取内容
+    status.ts   # 连接状态
+```
+
+生成的代码可直接修改调整，无需从零编写。
+
+### 方式四：YAML 声明式适配器（无代码）
+
+对于简单场景，可直接编写 YAML 配置文件，无需 TypeScript：
+
+```yaml
+# clis/mysite.yaml
+name: mysite
+commands:
+  search:
+    url: "https://mysite.com/search?q={query}"
+    selector: ".result-item h3"
+    extract: "textContent"
+  hot:
+    url: "https://mysite.com/hot"
+    selector: ".hot-list .item"
+    fields:
+      - title: "h3"
+      - link: "a@href"
+      - views: ".views"
+```
+
+将 `.yaml` 文件放入 `clis/` 目录，OpenCLI 自动加载注册。
+
+### 注册自定义适配器到 AI Agent
+
+创建好适配器后，配置 AI Agent（Claude Code、Cursor）自动发现：
+
+在项目根目录创建或修改 `.cursorrules` / `AGENT.md`：
+
+```markdown
+## 可用工具
+
+通过 OpenCLI 可调用以下命令：
+
+### 本地 CLI
+- `opencli gh ...` — GitHub CLI
+- `opencli docker ...` — Docker 管理
+
+### 浏览器自动化
+- `opencli operate open <url>` — 打开页面
+- `opencli operate click <selector>` — 点击元素
+- `opencli operate type <selector> <text>` — 输入文字
+- `opencli operate screenshot` — 截图
+- `opencli operate get <selector>` — 获取文本
+
+### 自定义适配器
+- `opencli mysite search <keyword>` — 搜索我的网站
+- `opencli myapp send <message>` — 向我的应用发消息
+```
+
 ## 常见问题
 
 ### Q: 为什么返回空数据？
@@ -245,7 +425,10 @@ opencli daemon start    # 手动启动 daemon
 
 ### Q: 如何自定义适配器？
 
-使用 `opencli record` 可以记录浏览器操作自动生成适配器代码。也支持直接向 `clis/` 目录放入 `.ts` 或 `.yaml` 文件实现自动注册。
+OpenCLI 支持深度扩展，详见上文「自定义适配器」章节。三种方式：
+1. `opencli register` 注册已有本地 CLI
+2. `opencli record` 录制浏览器操作自动生成代码
+3. 手动编写 TypeScript 或 YAML 适配器放入 `clis/` 目录
 
 ### Q: 视频下载需要什么？
 
