@@ -153,11 +153,21 @@ gitnexus serve
 
 ### 场景一：修改函数前评估影响
 
-当你准备修改一个函数时，使用 `impact` 工具了解所有依赖方：
+当你准备修改一个函数时，Claude 会自动调用 `impact` 工具了解所有依赖方：
 
 ```
 用户：我想修改 UserService.validate() 方法
-Claude 调用：gitnexus_impact symbol="UserService.validate" direction=both
+```
+
+Claude Code 内部调用 MCP 工具：
+```json
+{
+  "tool": "gitnexus_impact",
+  "input": {
+    "symbol": "UserService.validate",
+    "direction": "both"
+  }
+}
 ```
 
 返回预计算的完整调用链：
@@ -165,45 +175,102 @@ Claude 调用：gitnexus_impact symbol="UserService.validate" direction=both
 - 3 个聚类模块
 - 影响置信度 90%+
 
+Claude 然后会告诉你：
+> "这个方法被 8 个函数调用，分布在 3 个模块中。建议先查看 `AuthService.check()` 和 `PaymentService.verify()` 的实现，它们有最高的风险评分。"
+
 ### 场景二：理解新代码库
 
-进入一个陌生项目时，快速建立全局视图：
+进入一个陌生项目时，Claude 快速建立全局视图：
 
 ```
-# 列出所有已索引的仓库
-gitnexus_list_repos
-
-# 查询关键概念
-gitnexus_query query="authentication middleware"
-
-# 查看符号的完整上下文
-gitnexus_context symbol="AuthMiddleware" include_related=true
+用户：帮我理解这个项目的结构
 ```
+
+Claude 调用多个工具建立上下文：
+```json
+// 第一步：查看项目结构
+{ "tool": "gitnexus_query", "input": { "query": "main entry point" } }
+
+// 第二步：了解核心模块
+{ "tool": "gitnexus_query", "input": { "query": "core modules architecture" } }
+
+// 第三步：深入了解关键组件
+{ "tool": "gitnexus_context", "input": { "symbol": "MainRouter", "include_related": true } }
+```
+
+Claude 会综合这些信息，给你一个完整的产品级视图：
+> "这是一个典型的前后端分离项目。核心模块包括 `AuthService`（认证）、`OrderService`（订单）、`PaymentService`（支付）。主入口是 `MainRouter`，所有请求都经过它。"
 
 ### 场景三：安全重命名
 
-跨文件重命名时，GitNexus 会协调所有引用：
+跨文件重命名时，Claude 使用 `rename` 工具协调所有引用：
 
 ```
 用户：把 updateUserPassword 重命名为 changeUserPassword
-Claude 调用：gitnexus_rename old_name="updateUserPassword" new_name="changeUserPassword"
 ```
 
-自动更新所有文件中的引用，保持类型一致性。
-
-### 场景四：审查 Git 变更的影响
-
-代码审查时，评估变更的爆炸半径：
-
-```
-用户：查看这个 diff 的影响
-Claude 调用：gitnexus_detect_changes diff="abc123..def456"
+Claude 调用：
+```json
+{
+  "tool": "gitnexus_rename",
+  "input": {
+    "old_name": "updateUserPassword",
+    "new_name": "changeUserPassword",
+    "scope": "full"
+  }
+}
 ```
 
 返回：
-- 受影响的文件和函数
-- 关联的测试文件
-- 潜在风险评估
+- 5 个文件需要修改
+- 12 处引用
+- 类型签名更新确认
+
+Claude 然后在每个文件中精确修改，告诉你：
+> "已重命名。更新了 5 个文件中的 12 处引用，包括函数定义、调用点和测试文件。"
+
+### 场景四：审查 Git 变更的影响
+
+代码审查时，Claude 评估变更的爆炸半径：
+
+```
+用户：审查这个 PR 的影响
+```
+
+Claude 调用：
+```json
+{
+  "tool": "gitnexus_detect_changes",
+  "input": {
+    "diff": "abc123..def456",
+    "include_tests": true
+  }
+}
+```
+
+返回：
+- 8 个文件受影响
+- 3 个函数需要关注
+- 2 个测试文件可能需要更新
+- 潜在风险：中
+
+Claude 会输出详细的审查报告：
+> "这个 PR 修改了 `UserService.validate()` 的返回值类型。这会影响 5 个下游函数，其中 `AuthService.check()` 有高风险。建议在合并前确认这些调用者都已测试。"
+
+### 场景五：调试时追踪调用链
+
+调试问题时，Claude 快速定位问题根源：
+
+```
+用户：为什么这个 API 调用失败了？
+```
+
+Claude 调用：
+```json
+{ "tool": "gitnexus_context", "input": { "symbol": "createOrder", "depth": 3 } }
+```
+
+返回完整的调用栈和依赖关系，帮助 Claude 快速定位问题。
 
 ## 支持的语言
 
