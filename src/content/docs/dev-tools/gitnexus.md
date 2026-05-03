@@ -79,7 +79,7 @@ flowchart TB
         Q3 --> Q4[查询4: 高风险?]
         Q4 --> OUT1[4+ 查询后得到答案]
     end
-    
+
     subgraph GitNexus 智能工具
         U2[用户: 什么依赖 UserService?] --> TOOL[impact UserService upstream]
         TOOL --> PRECOMP[预结构化响应:<br/>8 个调用者, 3 个集群, 全部 90%+ 置信度]
@@ -148,6 +148,62 @@ gitnexus serve
 ```
 
 然后访问 [gitnexus.vercel.app](https://gitnexus.vercel.app)，它会自动检测本地服务器。
+
+## Claude Code 实战示例
+
+### 场景一：修改函数前评估影响
+
+当你准备修改一个函数时，使用 `impact` 工具了解所有依赖方：
+
+```
+用户：我想修改 UserService.validate() 方法
+Claude 调用：gitnexus_impact symbol="UserService.validate" direction=both
+```
+
+返回预计算的完整调用链：
+- 8 个直接调用者
+- 3 个聚类模块
+- 影响置信度 90%+
+
+### 场景二：理解新代码库
+
+进入一个陌生项目时，快速建立全局视图：
+
+```
+# 列出所有已索引的仓库
+gitnexus_list_repos
+
+# 查询关键概念
+gitnexus_query query="authentication middleware"
+
+# 查看符号的完整上下文
+gitnexus_context symbol="AuthMiddleware" include_related=true
+```
+
+### 场景三：安全重命名
+
+跨文件重命名时，GitNexus 会协调所有引用：
+
+```
+用户：把 updateUserPassword 重命名为 changeUserPassword
+Claude 调用：gitnexus_rename old_name="updateUserPassword" new_name="changeUserPassword"
+```
+
+自动更新所有文件中的引用，保持类型一致性。
+
+### 场景四：审查 Git 变更的影响
+
+代码审查时，评估变更的爆炸半径：
+
+```
+用户：查看这个 diff 的影响
+Claude 调用：gitnexus_detect_changes diff="abc123..def456"
+```
+
+返回：
+- 受影响的文件和函数
+- 关联的测试文件
+- 潜在风险评估
 
 ## 支持的语言
 
