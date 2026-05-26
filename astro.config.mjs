@@ -161,6 +161,10 @@ export default defineConfig({
           autogenerate: { directory: 'kubernetes' },
         },
         {
+          label: '安全',
+          autogenerate: { directory: 'security' },
+        },
+        {
           label: '关于',
           items: [
             { label: '关于我', link: '/about' },
